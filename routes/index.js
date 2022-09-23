@@ -6,9 +6,7 @@ const router = express.Router();
 const { booking } = require('../models');
 const users = require('./users');
 const bookings = require('./bookings');
-const onetoone = require('./onetoone');
-const onetomany = require('./onetomany');
-
+const test = require('./test');
 
 // ---------------------------------------------------------------------------------------------------
 
@@ -21,9 +19,22 @@ router.use('/users',users);
 
 router.use('/bookings', bookings);
 
-router.use('/onetoone', onetoone);
+// router.use('/test', test);
 
-router.use('/onetomany', onetomany);
+router.get('/get',(req,res)=>{
+    let i = 1
+    for (i=i; i<10; i++) {
+        console.log(`user   ${i}`);
+        res.send(`user  ${i}`);
+    }
+    
+    // for (let index = 1; index < 10; index++) {
+    //     // const element = array[index];
+    //     console.log("Element", index);
+        
+    // }
+});
+
 
 
 // ---------------------------------------------------------------------------------------------------
