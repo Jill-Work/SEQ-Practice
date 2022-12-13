@@ -4,32 +4,28 @@ const model = require('../models');
 // ---------------------------------------------------------------------------------------------------
 
 //      find all Bookings
-exports.getBookings = async (size , page ,search ,key ) => {
-    page = page - 1;
-    let condition = "";
-    if(search != ""){
-        condition = {where:{first_name:search}};
+exports.getBookings = async (condition) => {
+    return await model.booking.findAll(
+        {
+            ...condition,
+            include: [
+                {
+                    model: model.user
+                }
+            ]
 
-    }
-    return await model.booking.findAll(condition,{
-        limit: parseInt(size),      //  parseInt is use to convert string into integer value
-        offset: parseInt(size) * parseInt(page),
-        include: [
-            {
-                model: model.user
-            }
-        ],
-    });
+        }
+    );
 };
 
 //      find one Booking
 exports.getBooking = async (id) => {
     return await model.booking.findOne(
         {
-        where: { id: id }
+            where: { id: id }
         }
     );
-}; 
+};
 
 //      add Booking
 exports.addBooking = async (data) => {

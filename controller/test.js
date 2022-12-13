@@ -5,12 +5,12 @@ const db = require('../middleware/index');
 
 
 //      Import files
-const onetomany = require('../service/onetomany');
+const test = require('../service/test');
 
 // ---------------------------------------------------------------------------------------------------
 
-exports.onetomany = async (req,res) => {
-    const id = req.params.id;
-    const data = await onetomany.onetomany(id);
-    res.status(200).json(data);
+exports.test = async(req,res)=>{
+    
+    const Booking = await test.test();
+    res.send(Booking);
 };

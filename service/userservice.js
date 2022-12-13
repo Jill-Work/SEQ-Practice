@@ -5,19 +5,18 @@ const model = require('../models');
 // ---------------------------------------------------------------------------------------------------
 
 //      find all users
-exports.getUsers = async (size, page) => {
-    page = page - 1;
-    return await model.user.findAll({
-        limit: parseInt(size),      //  parseInt is use to convert string into integer value
-        offset: parseInt(size) * parseInt(page),
-        attributes: ['id','first_name', 'last_name'],
-        include: [
-            {
-                model: model.booking,
-                attributes: [['first_name', 'name'], ['last_name', 'last']]
-            }
-        ]
-    });
+exports.getUsers = async (condition) => {
+        return await model.user.findAll(
+
+        {
+            ...condition,
+            include: [
+                {
+                    model: model.booking,
+                }
+            ]
+        }
+    );
 };
 
 //      find one user
@@ -36,7 +35,15 @@ exports.getUser = async (id) => {
 
 //      add user
 exports.addUser = async (data) => {
-    return await model.user.create(data);
+
+    for (i=1; i<51; i++){
+        return await model.user.create(data);
+        console.log(i)
+        
+    }
+    console.log(data);
+
+
 };
 
 //      update user
