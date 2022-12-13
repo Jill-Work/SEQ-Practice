@@ -4,11 +4,14 @@ const router = express.Router();
 
 
 //      Import files
-const onetoone = require('../controller/onetoone');
+const test = require('../controller/test');
 
 
 
-router.get('/:id',onetoone.onetoone);
+router.get('/:first_name',test.test);
+
+
+
 
 
 // ---------------------------------------------------------------------------------------------------
